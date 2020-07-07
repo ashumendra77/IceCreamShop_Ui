@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'firstpage.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -17,13 +19,16 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             Column(
               children: <Widget>[
-                Text(
-                  "Ice Cream\nShop",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0),
+                  child: Text(
+                    "Ice Cream\nShop",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
                 SizedBox(height: 10),
                 Container(
@@ -32,9 +37,9 @@ class _HomePageState extends State<HomePage> {
                       50,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                      // color: Colors.red,
                       image: DecorationImage(
-                          image: AssetImage("images/2.png"), fit: BoxFit.contain)),
+                          image: AssetImage("images/2.png"),
+                          fit: BoxFit.contain)),
                 ),
               ],
             ),
@@ -46,17 +51,23 @@ class _HomePageState extends State<HomePage> {
               child: Container(
                   height: 50,
                   width: MediaQuery.of(context).size.width / 3,
-                  // decoration: BoxDecoration(color: Colors.blue),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
                         "Explore",
-                        style: TextStyle(fontWeight: FontWeight.w500,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
                           color: Colors.white,
                         ),
                       ),
                       InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FirstPage()));
+                        },
                         child: Container(
                           height: 50,
                           width: 60,
