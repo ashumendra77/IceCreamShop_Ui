@@ -7,8 +7,15 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   int select = 0;
+  int selectbar = 0;
   List<String> baritem = [];
   List<String> barname = ["Cup", "Cone", "Candy", "Bowl"];
+  List<String> baricon = [
+    "images/cup.png",
+    "images/cone.png",
+    "images/candy.png",
+    "images/bowl.png"
+  ];
   Widget getBar(int index) {
     return GestureDetector(
       onTap: () {
@@ -102,6 +109,65 @@ class _FirstPageState extends State<FirstPage> {
                   child: Image(
                       image: AssetImage("images/3.png"), height: 40, width: 50))
             ],
+          ),
+          SizedBox(height: 15),
+          Container(
+            height: 90,
+            width: double.infinity,
+            child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: baricon.length,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          InkWell(
+                            onTap: () {
+                              selectbar = index;
+                              setState(() {});
+                            },
+                            child: Container(
+                              height: 70,
+                              width: 70,
+                              margin: EdgeInsets.only(left: 15),
+                              decoration: BoxDecoration(
+                                  color: selectbar == index
+                                      ? Color(0xfff14a58)
+                                      : Colors.white,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        offset: Offset(4, 4),
+                                        color: Colors.grey,
+                                        blurRadius: 3,
+                                        spreadRadius: 1)
+                                  ],
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Center(
+                                child: Image(
+                                    height: 45,
+                                    color: selectbar == index
+                                        ? Colors.white
+                                        : Colors.grey,
+                                    image: AssetImage(baricon[index])),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            barname[index],
+                            style: TextStyle(
+                              color: selectbar == index
+                                  ? Color(0xfff14a58)
+                                  : Colors.grey,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(width: 20)
+                    ],
+                  );
+                }),
           ),
           Text(
             "Popular",
