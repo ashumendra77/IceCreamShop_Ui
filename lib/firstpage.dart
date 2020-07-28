@@ -8,6 +8,28 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   int select = 0;
   int selectbar = 0;
+  Map<int, List<dynamic>> maplist = {
+    1: [
+      Colors.red,
+      "Straberry",
+    ],
+    2: [
+      Colors.red,
+      "pista",
+    ],
+    3: [
+      Colors.red,
+      "chocolate",
+    ],
+    4: [
+      Colors.red,
+      "cheery",
+    ],
+    // 2: [
+    //   "Colors.red",
+    //   "Straberry",
+    // ],
+  };
   List<String> baritem = [];
   List<String> barname = ["Cup", "Cone", "Candy", "Bowl"];
   List<String> baricon = [
@@ -173,7 +195,18 @@ class _FirstPageState extends State<FirstPage> {
             "Popular",
             style: TextStyle(
                 color: Colors.pink, fontWeight: FontWeight.bold, fontSize: 18),
-          )
+          ),
+          Column(
+              children: maplist.entries.map((MapEntry map) {
+            debugPrint("${map.value}");
+            return Container(
+              height: 70,
+              margin: EdgeInsets.only(top: 10),
+              width: double.infinity,
+              color: map.value[0],
+              child: Text( map.value[1]),
+            );
+          }).toList())
         ],
       )),
     );
