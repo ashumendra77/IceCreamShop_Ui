@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rating_bar/rating_bar.dart';
 
 class FirstPage extends StatefulWidget {
   @override
@@ -14,15 +15,15 @@ class _FirstPageState extends State<FirstPage> {
       "Straberry",
     ],
     2: [
-      Colors.red,
+      Colors.green,
       "pista",
     ],
     3: [
-      Colors.red,
+      Colors.blue,
       "chocolate",
     ],
     4: [
-      Colors.red,
+      Colors.brown,
       "cheery",
     ],
     // 2: [
@@ -76,6 +77,7 @@ class _FirstPageState extends State<FirstPage> {
     return Scaffold(
       body: SingleChildScrollView(
           child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Stack(
             children: <Widget>[
@@ -134,7 +136,7 @@ class _FirstPageState extends State<FirstPage> {
           ),
           SizedBox(height: 15),
           Container(
-            height: 90,
+            height: 100,
             width: double.infinity,
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -144,6 +146,7 @@ class _FirstPageState extends State<FirstPage> {
                   return Row(
                     children: <Widget>[
                       Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           InkWell(
                             onTap: () {
@@ -161,7 +164,7 @@ class _FirstPageState extends State<FirstPage> {
                                   boxShadow: [
                                     BoxShadow(
                                         offset: Offset(4, 4),
-                                        color: Colors.grey,
+                                        color: Colors.grey[400],
                                         blurRadius: 3,
                                         spreadRadius: 1)
                                   ],
@@ -176,6 +179,7 @@ class _FirstPageState extends State<FirstPage> {
                               ),
                             ),
                           ),
+                          SizedBox(height: 8),
                           Text(
                             barname[index],
                             style: TextStyle(
@@ -198,14 +202,43 @@ class _FirstPageState extends State<FirstPage> {
           ),
           Column(
               children: maplist.entries.map((MapEntry map) {
-            debugPrint("${map.value}");
+            // debugPrint("${map.value}");
             return Container(
-              height: 70,
-              margin: EdgeInsets.only(top: 10),
-              width: double.infinity,
-              color: map.value[0],
-              child: Text( map.value[1]),
-            );
+                height: 100,
+                margin: EdgeInsets.only(top: 10),
+                width: double.infinity,
+                color: map.value[0][300],
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      height: 80,
+                      color: Colors.blueGrey,
+                    ),
+                    Image(
+                      height: 25,
+                      image: AssetImage(baricon[0]),
+                      fit: BoxFit.cover,
+                    ),
+                    Column(
+                      children: <Widget>[
+                        Text(map.value[1]),
+                        Row(
+                          children: <Widget>[
+                            Text("\$${76.90}"),
+                            RatingBar.readOnly(
+                              initialRating: 5 / 10,
+                              isHalfAllowed: true,
+                              halfFilledIcon: Icons.star_half,
+                              filledIcon: Icons.star,
+                              emptyIcon: Icons.star_border,
+                              filledColor: Colors.yellow,
+                            )
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ));
           }).toList())
         ],
       )),
