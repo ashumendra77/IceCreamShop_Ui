@@ -9,27 +9,11 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   int select = 0;
   int selectbar = 0;
-  Map<int, List<dynamic>> maplist = {
-    1: [
-      Colors.red,
-      "Straberry",
-    ],
-    2: [
-      Colors.green,
-      "pista",
-    ],
-    3: [
-      Colors.blue,
-      "chocolate",
-    ],
-    4: [
-      Colors.brown,
-      "cheery",
-    ],
-    // 2: [
-    //   "Colors.red",
-    //   "Straberry",
-    // ],
+  Map<String, List<dynamic>> maplist = {
+    "Straberry": [Colors.red, "images/1.png"],
+    "Pista": [Colors.green, "images/1.png"],
+    "Chocolate": [Colors.blue, "images/1.png"],
+    "Cheery": [Colors.brown, "images/1.png"],
   };
   List<String> baritem = [];
   List<String> barname = ["Cup", "Cone", "Candy", "Bowl"];
@@ -200,45 +184,73 @@ class _FirstPageState extends State<FirstPage> {
             style: TextStyle(
                 color: Colors.pink, fontWeight: FontWeight.bold, fontSize: 18),
           ),
+          SizedBox(height: 20),
           Column(
               children: maplist.entries.map((MapEntry map) {
             // debugPrint("${map.value}");
-            return Container(
-                height: 100,
-                margin: EdgeInsets.only(top: 10),
-                width: double.infinity,
-                color: map.value[0][300],
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      height: 80,
-                      color: Colors.blueGrey,
+            return Stack(
+              children: <Widget>[
+                Container(
+                  height: 120,
+                ),
+                Positioned(
+                  top: 10,
+                  right: 30,
+                  left: 15,
+                  child: Container(
+                    height: 80,
+                    width: MediaQuery.of(context).size.width,
+                    margin: EdgeInsets.only(top: 15),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: map.value[0][200],
                     ),
-                    Image(
-                      height: 25,
-                      image: AssetImage(baricon[0]),
-                      fit: BoxFit.cover,
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Text(map.value[1]),
-                        Row(
-                          children: <Widget>[
-                            Text("\$${76.90}"),
-                            RatingBar.readOnly(
-                              initialRating: 5 / 10,
-                              isHalfAllowed: true,
-                              halfFilledIcon: Icons.star_half,
-                              filledIcon: Icons.star,
-                              emptyIcon: Icons.star_border,
-                              filledColor: Colors.yellow,
-                            )
-                          ],
-                        )
-                      ],
-                    )
-                  ],
-                ));
+
+                    child: Container(),
+                  ),
+                ),
+                Positioned(
+                  right: 5,
+                  child: Image(
+                    height: 120,
+                    image: AssetImage(map.value[1]),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 30, left: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(map.key,
+                          style: TextStyle(
+                              color: map.value[0],
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold)),
+                      Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text("\$${76.90}",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold)),
+                          SizedBox(width: 40),
+                          RatingBar.readOnly(
+                            initialRating: 4,
+                            isHalfAllowed: true,
+                            halfFilledIcon: Icons.star_half,
+                            filledIcon: Icons.star,
+                            emptyIcon: Icons.star_border,
+                            filledColor: map.value[0],
+                            size: 20,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            );
           }).toList())
         ],
       )),
