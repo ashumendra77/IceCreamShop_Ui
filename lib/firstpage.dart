@@ -1,3 +1,4 @@
+import 'package:IceCream_ui/detailPage.dart';
 import 'package:flutter/material.dart';
 import 'package:rating_bar/rating_bar.dart';
 
@@ -188,68 +189,72 @@ class _FirstPageState extends State<FirstPage> {
           Column(
               children: maplist.entries.map((MapEntry map) {
             // debugPrint("${map.value}");
-            return Stack(
-              children: <Widget>[
-                Container(
-                  height: 120,
-                ),
-                Positioned(
-                  top: 10,
-                  right: 30,
-                  left: 15,
-                  child: Container(
-                    height: 80,
-                    width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.only(top: 15),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: map.value[0][200],
-                    ),
-
-                    child: Container(),
-                  ),
-                ),
-                Positioned(
-                  right: 5,
-                  child: Image(
+            return InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => DetailPage()));
+              },
+              child: Stack(
+                children: <Widget>[
+                  Container(
                     height: 120,
-                    image: AssetImage(map.value[1]),
-                    fit: BoxFit.cover,
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 30, left: 30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(map.key,
-                          style: TextStyle(
-                              color: map.value[0],
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold)),
-                      Row(
-                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text("\$${76.90}",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold)),
-                          SizedBox(width: 40),
-                          RatingBar.readOnly(
-                            initialRating: 4,
-                            isHalfAllowed: true,
-                            halfFilledIcon: Icons.star_half,
-                            filledIcon: Icons.star,
-                            emptyIcon: Icons.star_border,
-                            filledColor: map.value[0],
-                            size: 20,
-                          )
-                        ],
-                      )
-                    ],
+                  Positioned(
+                    top: 10,
+                    right: 30,
+                    left: 15,
+                    child: Container(
+                      height: 80,
+                      width: MediaQuery.of(context).size.width,
+                      margin: EdgeInsets.only(top: 15),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: map.value[0][200],
+                      ),
+                      child: Container(),
+                    ),
                   ),
-                )
-              ],
+                  Positioned(
+                    right: 5,
+                    child: Image(
+                      height: 120,
+                      image: AssetImage(map.value[1]),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 30, left: 30),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(map.key,
+                            style: TextStyle(
+                                color: map.value[0],
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold)),
+                        Row(
+                          children: <Widget>[
+                            Text("\$${76.90}",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold)),
+                            SizedBox(width: 40),
+                            RatingBar.readOnly(
+                              initialRating: 4,
+                              isHalfAllowed: true,
+                              halfFilledIcon: Icons.star_half,
+                              filledIcon: Icons.star,
+                              emptyIcon: Icons.star_border,
+                              filledColor: map.value[0],
+                              size: 20,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
             );
           }).toList())
         ],
