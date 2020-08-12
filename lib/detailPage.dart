@@ -2,6 +2,9 @@ import 'package:IceCream_ui/widget/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class DetailPage extends StatefulWidget {
+  final String iceName;
+  final String image;
+  DetailPage({@required this.iceName, @required this.image});
   @override
   _DetailPageState createState() => _DetailPageState();
 }
@@ -35,7 +38,7 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       body: SafeArea(
           child: ListView(
-        padding: EdgeInsets.only(left: 20, right: 20),
+        padding: EdgeInsets.only(left: 20, right: 20, top: 10),
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,22 +47,23 @@ class _DetailPageState extends State<DetailPage> {
                   height: 40,
                   width: 40,
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Color(0xfff14e58),
                       borderRadius: BorderRadius.circular(10)),
-                  child: Icon(Icons.arrow_back)),
+                  child: Icon(Icons.arrow_back, color: Colors.white)),
               Container(
                   height: 40,
                   width: 40,
                   decoration: BoxDecoration(
-                      color: Colors.red,
+                      color: Color(0xfff14e58),
                       borderRadius: BorderRadius.circular(10)),
-                  child: Icon(Icons.shopping_cart))
+                  child: Icon(Icons.shopping_cart, color: Colors.white))
             ],
           ),
-          Text("Pistachio\nIce Cream",
+          SizedBox(height: 20),
+          Text(widget.iceName + "\nIceCream",
               style: TextStyle(
                   fontSize: 30,
-                  color: Colors.pinkAccent,
+                  color: Color(0xfff14e58),
                   fontWeight: FontWeight.w500)),
           Container(
             height: 320,
@@ -88,10 +92,7 @@ class _DetailPageState extends State<DetailPage> {
                     SizedBox(width: 50),
                     Stack(
                       children: <Widget>[
-                        Container(
-                            height: 300,
-                            width: 180,
-                            decoration: BoxDecoration()),
+                        Container(height: 300, width: 180),
                         Container(
                             height: 270,
                             width: 180,
@@ -107,11 +108,14 @@ class _DetailPageState extends State<DetailPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Image(
-                                width: 130,
-                                height: 150,
-                                image: AssetImage("images/1.png"),
-                                fit: BoxFit.cover,
+                              Hero(
+                                tag: widget.image,
+                                child: Image(
+                                  width: 130,
+                                  height: 150,
+                                  image: AssetImage(widget.image),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                               Row(
                                   mainAxisAlignment:
@@ -129,7 +133,7 @@ class _DetailPageState extends State<DetailPage> {
                                 height: 45,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
-                                    color: Colors.pink[100]),
+                                    color: Color(0xfff7c1d2)),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -142,9 +146,13 @@ class _DetailPageState extends State<DetailPage> {
                                           }
                                         },
                                         child: Text("-",
-                                            style: TextStyle(fontSize: 32))),
+                                            style: TextStyle(
+                                                fontSize: 32,
+                                                color: Color(0xfff14e58)))),
                                     Text("$quantity",
-                                        style: TextStyle(fontSize: 22)),
+                                        style: TextStyle(
+                                            fontSize: 22,
+                                            color: Color(0xfff14e58))),
                                     InkWell(
                                         onTap: () {
                                           setState(() {});
@@ -152,7 +160,8 @@ class _DetailPageState extends State<DetailPage> {
                                             quantity++;
                                           }
                                         },
-                                        child: Icon(Icons.add))
+                                        child: Icon(Icons.add,
+                                            color: Color(0xfff14e58)))
                                   ],
                                 ),
                               )
@@ -170,12 +179,14 @@ class _DetailPageState extends State<DetailPage> {
           Text("\$${19.6}",
               style: TextStyle(
                   fontSize: 28,
-                  color: Colors.pink,
+                  color: Color(0xfff14e58),
                   fontWeight: FontWeight.bold)),
           Container(
             height: 50,
+            margin: EdgeInsets.only(top: 10),
             decoration: BoxDecoration(
-                color: Colors.pink, borderRadius: BorderRadius.circular(10)),
+                color: Color(0xfff14e58),
+                borderRadius: BorderRadius.circular(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[

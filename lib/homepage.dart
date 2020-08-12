@@ -20,27 +20,24 @@ class _HomePageState extends State<HomePage> {
             Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(top: 15.0),
-                  child: Text(
-                    "Ice Cream\nShop",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
-                  ),
+                  padding: EdgeInsets.only(top: 15.0),
+                  child: Text("Ice Cream\nShop",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 30,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500)),
                 ),
                 SizedBox(height: 10),
                 Container(
-                  height: MediaQuery.of(context).size.height -
-                      kBottomNavigationBarHeight -
-                      50,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("images/2.png"),
-                          fit: BoxFit.contain)),
-                ),
+                    height: MediaQuery.of(context).size.height -
+                        kBottomNavigationBarHeight -
+                        50,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("images/2.png"),
+                            fit: BoxFit.contain))),
               ],
             ),
             Positioned(
@@ -50,16 +47,16 @@ class _HomePageState extends State<HomePage> {
               right: 10,
               child: Container(
                   height: 50,
-                  width: MediaQuery.of(context).size.width / 3,
+                  width: MediaQuery.of(context).size.width / 2,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text(
                         "Explore",
                         style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: Colors.white,
-                        ),
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),
                       ),
                       InkWell(
                         onTap: () {
@@ -69,14 +66,13 @@ class _HomePageState extends State<HomePage> {
                                   builder: (context) => FirstPage()));
                         },
                         child: Container(
-                          height: 50,
-                          width: 60,
-                          decoration: BoxDecoration(
-                              color: Color(0xfff14a58),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Icon(Icons.arrow_forward,
-                              size: 40, color: Colors.white),
-                        ),
+                            height: 50,
+                            width: 60,
+                            decoration: BoxDecoration(
+                                color: Color(0xfff14a58),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Icon(Icons.arrow_forward,
+                                size: 40, color: Colors.white)),
                       )
                     ],
                   )),
